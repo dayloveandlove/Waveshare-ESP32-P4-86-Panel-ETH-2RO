@@ -20,18 +20,19 @@ substitutions: !include common/substitutions.yaml
 external_components:
   - source: github://pr#10562
     components: [mipi_dsi]
-    refresh: 1h
+    refresh: 0s
 
   - source: github://alaltitov/esphome@main
     components: [i18n]
-    refresh: 1h
+    refresh: 0s
 
 i18n:
   id: i18n_translations
   sources:
     - translations/ru.yaml
     - translations/en.yaml
-  default_locale: ru
+    - translations/zh.yaml
+  default_locale: zh
 
 
 esphome:

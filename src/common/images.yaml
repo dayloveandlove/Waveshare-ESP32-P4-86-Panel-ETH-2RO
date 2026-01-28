@@ -296,6 +296,12 @@
   #############################
   ########## FLAGS ############
   #############################
+- file: 'assets/images/flags/zh.png'
+  id: flags_zh_img
+  type: rgb565
+  resize: 60x90  # 40x60 * 1.5
+  byte_order: little_endian
+  transparency: alpha_channel
 
 - file: 'assets/images/flags/de.png'
   id: flags_de_img

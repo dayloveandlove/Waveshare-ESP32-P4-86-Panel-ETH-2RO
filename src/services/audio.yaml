@@ -137,6 +137,10 @@ media_player:
               voice_assistant.is_running:
           then:
             - micro_wake_word.start
+    files:
+      - id: wake_sound_file
+        # 这里使用 Home Assistant 官方的提示音，也可以换成您喜欢的二次元语音 URL
+        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/wake_word_triggered.flac
 
 
 sensor:
@@ -168,9 +172,24 @@ micro_wake_word:
   id: my_wake_word
   models:
     - model: alexa
+      id: alexa
+    - model: https://raw.githubusercontent.com/formatBCE/Respeaker-Lite-ESPHome-integration/refs/heads/main/microwakeword/models/v2/kenobi.json
+      id: kenobi
+  # on_wake_word_detected:
+  #   then:
+  #     - logger.log: "Wake word detected"
+  #     - voice_assistant.start:
+  #         wake_word: !lambda return wake_word;
+  # ... 在 micro_wake_word 配置中 ...
   on_wake_word_detected:
     then:
       - logger.log: "Wake word detected"
+      
+      - lambda: id(speaker_media_player)->play_file(id(wake_sound_file), true, false);
+      # 等待 200-300ms 让声音播完，防止麦克风录入提示音
+      - delay: 250ms 
+      # --- 新增部分结束 ---
+
       - voice_assistant.start:
           wake_word: !lambda return wake_word;
 

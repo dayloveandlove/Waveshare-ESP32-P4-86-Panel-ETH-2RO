@@ -92,9 +92,9 @@ switch:
       # - script.execute: update_loading_page
     on_turn_off:
       - i18n.set_locale:
-          locale: "en"
+          locale: "zh"
       - lambda: |-
-          id(current_language) = "en";
+          id(current_language) = "zh";
           ESP_LOGI("TEST", "Current locale i18n: %s", id(i18n_translations).get_current_locale().c_str());
           ESP_LOGI("TEST", "Current locale global: %s", id(current_language).c_str());
       - lvgl.image.update:
@@ -185,18 +185,23 @@ sensor:
         - if:
             condition:
               lambda: return id(weather_wind_speed_unit_sensor).state == "km/h";
+              # lambda: return id(weather_wind_speed_unit_sensor).state == "";
             then:
               - lvgl.label.update:
                   id: weather_wind_speed_value
                   text:
-                    format: "%.1f "
-                    args: [id(weather_wind_speed_sensor).state]
+                    # format: "%.1f "
+                    # args: [id(weather_wind_speed_sensor).state]
+                    format: "%.1f %s"
+                    args: [id(weather_wind_speed_sensor).state, id(weather_wind_speed_unit_sensor).state.c_str()]
             else:
               - lvgl.label.update:
                   id: weather_wind_speed_value
                   text:
-                    format: "%.0f "
-                    args: [id(weather_wind_speed_sensor).state]            
+                    # format: "%.0f "
+                    # args: [id(weather_wind_speed_sensor).state]
+                    format: "%.0f %s"
+                    args: [id(weather_wind_speed_sensor).state, id(weather_wind_speed_unit_sensor).state.c_str()]              
 
   # Home temperature sensor
   - platform: homeassistant
@@ -320,11 +325,11 @@ text_sensor:
     id: weather_wind_speed_unit_sensor
     entity_id: "${weather_entity}"
     attribute: wind_speed_unit    
-    on_value: 
-      then:
-        - lvgl.label.update:
-            id: weather_wind_speed_unit
-            text: !lambda return x;
+    # on_value: 
+    #   then:
+    #     - lvgl.label.update:
+    #         id: weather_wind_speed_unit
+    #         text: !lambda return x;
 
   # IP address
   - platform: wifi_info
@@ -1609,6 +1614,7 @@ mapping:
       it: flags_it_img
       pt: flags_pt_img
       ru: flags_ru_img
+      zh: flags_zh_img
 
 script:
 
@@ -2317,7 +2323,7 @@ script:
           auto get_day_name = [](int index) -> const char* {
             auto time_now = id(sntp_time).now();
             int today_wday = time_now.day_of_week;
-            int forecast_wday = (today_wday + index - 1) % 7 + 1;
+            int forecast_wday = (today_wday + index + 1) % 7 + 1;
             
             const char* day_keys[] = {
               "", "day_of_week_short.sunday", "day_of_week_short.monday",
@@ -2421,20 +2427,20 @@ script:
             if (utc_timestamp == 0) return "--:--";
             
             // Получаем offset
-            auto local_now = id(sntp_time).now();
-            auto utc_now = id(sntp_time).utcnow();
+            // auto local_now = id(sntp_time).now();
+            // auto utc_now = id(sntp_time).utcnow();
             
-            int32_t offset_hours = local_now.hour - utc_now.hour;
-            if (offset_hours > 12) offset_hours -= 24;
-            if (offset_hours < -12) offset_hours += 24;
+            // int32_t offset_hours = local_now.hour - utc_now.hour;
+            // if (offset_hours > 12) offset_hours -= 24;
+            // if (offset_hours < -12) offset_hours += 24;
             
-            int32_t tz_offset = offset_hours * 3600 + 
-                              (local_now.minute - utc_now.minute) * 60 + 
-                              (local_now.second - utc_now.second);
+            // int32_t tz_offset = offset_hours * 3600 + 
+            //                   (local_now.minute - utc_now.minute) * 60 + 
+            //                   (local_now.second - utc_now.second);
             
             // Применяем offset
-            time_t local_timestamp = utc_timestamp + tz_offset;
-            
+            // time_t local_timestamp = utc_timestamp + tz_offset;
+            time_t local_timestamp = utc_timestamp;
             // Конвертируем в структуру времени
             struct tm local_tm;
             gmtime_r(&local_timestamp, &local_tm);

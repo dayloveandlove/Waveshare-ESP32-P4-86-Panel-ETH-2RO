@@ -1,2 +1,2 @@
-ha_server: "http://homeassistant.local:8123"
-media_player_entity: "media_player.yandex_station_m00bv9j00dc7sg"
+ha_server: "http://192.168.8.163:8123"
+media_player_entity: "media_player.esp32_p4_86_panel_eth_2ro_1_esp32_p4_media_player_2"

@@ -1,0 +1,126 @@
+loading:
+  synchronization: "正在同步..."
+  connection_api: "正在连接 API..."
+
+ota:
+  start:
+    primary: "开始 OTA 更新！"
+    secondary: "请稍候..."
+  end: 
+    primary: "更新完成！"
+    secondary: "正在重启..."
+  error:
+    primary: "更新出错！"
+    secondary: "正在重启..."
+  progress: "固件更新进度 %0.1f%%"
+
+settings:
+  backlight: "背光"
+  sleep_time: "休眠时间"
+
+sleep_time:
+  never: "从不"
+  minute1: "1 分钟"
+  minute5: "5 分钟" 
+  minute10: "10 分钟"
+  minute30: "30 分钟"
+  hour1: "1 小时"
+  hour6: "6 小时"
+  hour12: "12 小时"
+
+forecasts:
+  daily: "每日"
+  hourly: "每小时"
+
+weather:
+  clear-night: "晴（夜间）"
+  cloudy: "多云"
+  exceptional: "极端天气"
+  fog: "雾"
+  hail: "冰雹"
+  lightning: "雷电"
+  lightning-rainy: "雷阵雨"
+  partlycloudy: "晴间多云"
+  pouring: "暴雨"
+  rainy: "雨"
+  snowy: "雪"
+  snowy-rainy: "雨夹雪"
+  sunny: "晴"
+  windy: "有风"
+  windy-variant: "多云有风"
+
+day_of_week:
+  monday: "星期一"
+  tuesday: "星期二"
+  wednesday: "星期三"
+  thursday: "星期四"
+  friday: "星期五"
+  saturday: "星期六"
+  sunday: "星期日"
+
+day_of_week_short:
+  monday: "周一"
+  tuesday: "周二"
+  wednesday: "周三"
+  thursday: "周四"
+  friday: "周五"
+  saturday: "周六"
+  sunday: "周日"
+
+month:
+  january: "一月"
+  february: "二月"
+  march: "三月"
+  april: "四月"
+  may: "五月"
+  june: "六月"
+  july: "七月"
+  august: "八月"
+  september: "九月"
+  october: "十月"
+  november: "十一月"
+  december: "十二月"
+
+vacuum:
+  name: "扫地机器人"
+  state:
+    cleaning: "清扫中"
+    docked: "已回充"
+    error: "错误"
+    idle: "空闲"
+    off: "关闭"
+    on: "开启"
+    paused: "已暂停"
+    returning: "正在回充"
+
+cover:
+  name: "窗帘"
+  state:
+    closed: "已关闭"
+    closing: "正在关闭"
+    open: "已打开"
+    opening: "正在打开"
+    stopped: "已停止"
+
+alarm_panel:
+  name: "报警控制面板"
+  enter_pass: "输入密码"
+  wrong_pass: "密码错误"
+  state:
+    armed: "已设防"
+    armed_away: "离家设防"
+    armed_custom_bypass: "自定义设防"
+    armed_home: "在家设防"
+    armed_night: "夜间设防"
+    armed_vacation: "度假设防"
+    arming: "设防中"
+    disarmed: "已撤防"
+    disarming: "撤防中"
+    pending: "等待中"
+    triggered: "已触发"
+
+fan:
+  name: "风扇"
+  state:
+    "on": "关闭"
+    "off": "开启"
